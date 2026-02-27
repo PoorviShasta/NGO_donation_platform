@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= organization.organizationName %> - Our Work</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+    @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); } 50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); } }
+    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+    .gradient-text { background: linear-gradient(135deg, #3b82f6 0%, #10b981 50%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.5); }
+    .progress-bar { background: linear-gradient(90deg, #3b82f6, #10b981); background-size: 200% 100%; animation: shimmer 2s linear infinite; }
+    .card-hover { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .card-hover:hover { transform: translateY(-8px) scale(1.02); }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #3b82f6, #10b981); border-radius: 10px; }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-emerald-50 min-h-screen text-slate-800">
+
+<header class="relative overflow-hidden">
+  <div class="absolute top-0 left-0 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+  <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-400/20 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+  <div class="absolute bottom-0 left-1/3 w-72 h-72 bg-purple-400/20 rounded-full blur-3xl"></div>
+
+  <nav class="relative glass-card shadow-lg shadow-blue-500/10 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg">
+        <i data-lucide="heart" class="w-6 h-6 text-white"></i>
+      </div>
+      <h1 class="text-2xl font-extrabold gradient-text">HopeBridge</h1>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="/dashboard" class="flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors px-4 py-2 rounded-xl hover:bg-blue-50"><i data-lucide="home" class="w-4 h-4"></i>Dashboard</a>
+      <a href="/logout" class="flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-red-600 transition-colors px-4 py-2 rounded-xl hover:bg-red-50"><i data-lucide="log-out" class="w-4 h-4"></i>Logout</a>
+    </div>
+  </nav>
+
+  <div class="relative max-w-7xl mx-auto px-6 py-16 md:py-24 text-center">
+    <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-md mb-6">
+      <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+      <span class="text-sm font-medium text-slate-600">Impact Through Action</span>
+    </div>
+    <h2 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">Our Work at <span class="gradient-text block"><%= organization.organizationName %></span></h2>
+    <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">Discover the campaigns and initiatives that are making a real difference in communities worldwide.</p>
+  </div>
+</header>
+
+<main class="relative max-w-7xl mx-auto px-6 pb-16">
+
+  <div class="mb-8">
+    <a href="/organization/<%= organization._id %>" class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 hover:bg-blue-200 font-medium px-6 py-3 rounded-xl transition-colors"><i data-lucide="arrow-left" class="w-4 h-4"></i>Back to About <%= organization.organizationName %></a>
+  </div>
+
+  <div class="bg-white/70 backdrop-blur-xl rounded-3xl shadow-xl shadow-blue-500/10 p-8 mb-10 border border-white/50">
+    <div class="flex items-start gap-5">
+      <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0"><i data-lucide="briefcase" class="w-10 h-10 text-white"></i></div>
+      <div class="flex-1">
+        <h3 class="text-3xl font-bold text-slate-900 mb-4 flex items-center gap-3"><i data-lucide="history" class="w-6 h-6 text-blue-500"></i>Work History</h3>
+        <p class="text-slate-600 leading-relaxed text-lg"><%= organization.workHistory %></p>
+      </div>
+    </div>
+  </div>
+
+  <% if (activeCampaigns && activeCampaigns.length) { %>
+  <div class="mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg animate-float"><i data-lucide="heart-handshake" class="w-5 h-5 text-white"></i></div>
+      <h2 class="text-2xl font-bold text-slate-900">Active Campaigns</h2>
+      <span class="bg-emerald-100 text-emerald-700 text-sm font-semibold px-3 py-1 rounded-full"><%= activeCampaigns.length %> Active</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <% activeCampaigns.forEach(function(campaign) { 
+        var raised = Number(campaign.raisedAmount || 0);
+        var goal = Number(campaign.goalAmount || 0);
+        var pct = goal > 0 ? Math.round((raised / goal) * 100) : 0;
+        var barWidth = Math.min(pct, 100);
+        campaignIndex++;
+      %>
+        <div class="relative bg-white/80 backdrop-blur-xl rounded-3xl overflow-hidden shadow-lg shadow-blue-500/10 border border-white/50 card-hover group">
+          <% if (campaign.image) { %><div class="w-full h-48 overflow-hidden"><img src="<%= campaign.image %>" class="object-cover w-full h-full" alt="campaign image"></div><% } %>
+          <div class="bg-gradient-to-br from-blue-500 via-purple-500 to-emerald-500 p-6 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+            <span class="inline-flex items-center gap-1 bg-white/20 backdrop-blur px-3 py-1 rounded-full text-white text-xs font-semibold mb-3"><i data-lucide="folder" class="w-3 h-3"></i><%= campaign.category || 'General' %></span>
+            <a href="/campaigns/<%= campaign._id %>" class="text-xl font-bold text-white line-clamp-2 hover:underline"><%= campaign.title %></a>
+          </div>
+          <div class="p-6">
+            <p class="text-slate-500 text-sm line-clamp-3 leading-relaxed mb-6"><%= campaign.description %></p>
+            <div class="mb-4">
+              <div class="flex justify-between items-end mb-2">
+                <div><p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Raised</p><p class="text-xl font-bold text-emerald-600">₹<%= raised.toLocaleString() %></p></div>
+                <div class="text-right"><p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Goal</p><p class="text-xl font-bold text-slate-700">₹<%= goal.toLocaleString() %></p></div>
+              </div>
+              <div class="h-3 bg-slate-100 rounded-full overflow-hidden"><div class="progress-bar h-full rounded-full" id="progress-<%= campaignIndex %>"></div></div>
+              <p class="text-right text-xs font-semibold text-slate-500 mt-1"><%= pct %>% funded</p>
+            </div>
+            <div class="flex gap-2 mt-4">
+              <a href="/campaigns/<%= campaign._id %>" class="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold py-3 rounded-xl transition-all shadow-lg shadow-emerald-500/30"><i data-lucide="heart" class="w-4 h-4"></i>Donate Now</a>
+              <a href="/campaigns/<%= campaign._id %>" class="flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3 px-4 rounded-xl transition-all"><i data-lucide="eye" class="w-4 h-4"></i>View</a>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+  <% } %>
+
+  <% if (completedCampaigns && completedCampaigns.length) { %>
+  <div class="mt-16">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 bg-yellow-400 rounded-xl flex items-center justify-center shadow-lg animate-pulse-glow"><i data-lucide="smile" class="w-5 h-5 text-white"></i></div>
+      <h2 class="text-2xl font-bold text-slate-900">Completed Campaigns - Happy Faces, Happy Society</h2>
+      <span class="bg-yellow-100 text-yellow-700 text-sm font-semibold px-3 py-1 rounded-full"><%= completedCampaigns.length %> Completed</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <% completedCampaigns.forEach(function(campaign) { %>
+        <div class="relative bg-white/80 backdrop-blur-xl rounded-3xl overflow-hidden shadow-lg shadow-yellow-500/10 border border-white/50 card-hover group">
+          <% if (campaign.image) { %><div class="w-full h-48 overflow-hidden"><img src="<%= campaign.image %>" class="object-cover w-full h-full" alt="campaign image"></div><% } %>
+          <div class="p-6 text-center">
+            <h3 class="text-xl font-bold text-slate-900 line-clamp-2"><%= campaign.title %></h3>
+            <p class="text-slate-500 text-sm mt-2 line-clamp-2"><%= campaign.description %></p>
+            <div class="mt-4"><i data-lucide="heart" class="text-red-500 w-6 h-6 inline-block"></i><span class="text-red-600 font-semibold ml-2">Goal reached. Happy Faces, Happy Society!</span></div>
+            <a href="/campaigns/<%= campaign._id %>" class="mt-6 inline-flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-xl transition-all"><i data-lucide="eye" class="w-4 h-4"></i>View Story</a>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+  <% } %>
+
+  <% if ((!activeCampaigns || activeCampaigns.length === 0) && (!completedCampaigns || completedCampaigns.length === 0)) { %>
+  <div class="col-span-full">
+    <div class="bg-white/60 backdrop-blur-xl rounded-3xl border-2 border-dashed border-slate-300 p-12 text-center">
+      <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6"><i data-lucide="inbox" class="w-10 h-10 text-slate-400"></i></div>
+      <h3 class="text-xl font-bold text-slate-700 mb-2">No Campaigns Yet</h3>
+      <p class="text-slate-500 max-w-md mx-auto">This organization hasn't launched any campaigns yet. Check back soon to see their upcoming initiatives.</p>
+    </div>
+  </div>
+  <% } %>
+
+</main>
+
+<footer class="bg-white/50 backdrop-blur border-t border-slate-200 py-8 mt-12">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <p class="text-slate-500 font-medium">Made with <span class="text-red-500">♥</span> for a better world</p>
+    <p class="text-slate-400 text-sm mt-1">© 2024 HopeBridge - NGO Donation Platform</p>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+  <% if (activeCampaigns && activeCampaigns.length) { %>
+    <% var idx = 0; activeCampaigns.forEach(function(c) { 
+      var r = Number(c.raisedAmount || 0);
+      var g = Number(c.goalAmount || 0);
+      var p = g > 0 ? Math.round((r / g) * 100) : 0;
+      var w = Math.min(p, 100);
+      idx++;
+    %>
+      document.getElementById('progress-<%= idx %>').style.width = '<%= w %>%';
+    <% }); %>
+  <% } %>
+</script>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | NGO Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #4e73df 0%, #1cc88a 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh; /* Prevents card from being taller than screen */
+            display: flex;
+            flex-direction: column;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            animation: fadeIn 0.5s ease-out;
+            overflow: hidden; /* Contains the scrollable area */
+        }
+
+        .card-header {
+            padding: 30px 40px 15px;
+            text-align: center;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        h2 {
+            color: #1e293b;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        p.subtitle {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .card-body {
+            padding: 25px 40px 30px;
+            overflow-y: auto; /* Makes form scrollable if it gets too long */
+        }
+
+        /* Custom Scrollbar for Card Body */
+        .card-body::-webkit-scrollbar { width: 6px; }
+        .card-body::-webkit-scrollbar-track { background: transparent; }
+        .card-body::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .card-body::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-color: #f1f5f9;
+            color: #334155;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            appearance: none; /* Removes default dropdown arrow to style custom if needed */
+        }
+
+        /* Custom dropdown arrow for select */
+        select {
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2364748b%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px top 50%;
+            background-size: 10px auto;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            background-color: #ffffff;
+            border-color: #4e73df;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(78, 115, 223, 0.15);
+        }
+
+        /* Highlight box for NGO details */
+        .ngo-section {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 10px;
+            display: none; /* Hidden by default via JS */
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            color: #4e73df;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #4e73df 0%, #2e59d9 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(78, 115, 223, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(78, 115, 223, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .footer a {
+            color: #4e73df;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="card-header">
+        <h2>Create Account</h2>
+        <p class="subtitle">Join our community to make a difference.</p>
+    </div>
+
+    <div class="card-body">
+        <form action="/api/auth/register" method="POST">
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Full Name (or Org Name)" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <select name="role" id="roleSelector">
+                    <option value="donor">Register as Donor</option>
+                    <option value="ngo">Register as NGO</option>
+                </select>
+            </div>
+
+            <div class="ngo-section" id="ngoDetails">
+                <div class="section-title">NGO Details</div>
+                <div class="form-group">
+                    <input type="text" name="organizationName" placeholder="Official Organization Name">
+                </div>
+                <div class="form-group">
+                    <input type="url" name="website" placeholder="Official Website (https://...)">
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="contactNumber" placeholder="Contact Number">
+                </div>
+                <div class="form-group">
+                    <textarea name="about" placeholder="About the Organization"></textarea>
+                </div>
+                <div class="form-group">
+                    <textarea name="workHistory" placeholder="Describe Your Work / Community Impact"></textarea>
+                </div>
+            </div>
+
+            <button type="submit">Complete Registration</button>
+
+            <div class="footer">
+                Already have an account? <a href="/">Login here</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const roleSelector = document.getElementById('roleSelector');
+    const ngoDetails = document.getElementById('ngoDetails');
+
+    roleSelector.addEventListener('change', function() {
+        if (this.value === 'ngo') {
+            ngoDetails.style.display = 'block';
+        } else {
+            ngoDetails.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>

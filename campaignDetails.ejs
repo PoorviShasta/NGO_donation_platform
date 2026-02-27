@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Campaign Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-10">
+
+<div class="bg-white p-6 rounded shadow w-1/2 mx-auto">
+  <%
+    const ownerId = campaign.createdBy && campaign.createdBy._id
+      ? campaign.createdBy._id.toString()
+      : "";
+    const currentUserId = user && user._id
+      ? user._id.toString()
+      : user && user.id
+        ? user.id.toString()
+        : "";
+    const canEditCampaign = ownerId && currentUserId && ownerId === currentUserId;
+  %>
+
+  <h1 class="text-2xl font-bold mb-4"><%= campaign.title %></h1>
+
+  <% if (campaign.image) { %>
+    <div class="mb-4">
+      <img src="<%= campaign.image %>" class="w-full h-64 object-cover rounded" alt="campaign image">
+    </div>
+  <% } %>
+
+  <p><%= campaign.description %></p>
+
+  <p class="mt-3">Goal: ₹<%= campaign.goalAmount %></p>
+  <p>Raised: ₹<%= campaign.raisedAmount %></p>
+  <% if (campaign.isCompleted) { %>
+    <p class="text-green-600 font-semibold">This campaign has been completed! 🎉</p>
+  <% } %>
+  <p>Created By: 
+    <% if (campaign.createdBy && campaign.createdBy._id) { %>
+      <a href="/organization/<%= campaign.createdBy._id %>" class="text-blue-600 hover:underline"><%= campaign.createdBy.name %></a>
+    <% } else { %>
+      Organization
+    <% } %>
+  </p>
+
+  <div class="mt-6 flex gap-4">
+
+    <a href="/dashboard"
+       class="bg-gray-500 text-white px-4 py-2 rounded">
+       Go Back
+    </a>
+
+    <% if (canEditCampaign) { %>
+      <a href="/campaigns/<%= campaign._id %>/edit" class="bg-blue-600 text-white px-4 py-2 rounded ml-2">
+        Edit Campaign
+      </a>
+    <% } %>
+
+    <% if (!campaign.isCompleted && campaign.raisedAmount < campaign.goalAmount) { %>
+      <a href="/campaigns/<%= campaign._id %>/donate"
+         class="bg-green-600 text-white px-4 py-2 rounded">
+         Donate
+      </a>
+    <% } %>
+
+  </div>
+
+</div>
+
+</body>
+</html>

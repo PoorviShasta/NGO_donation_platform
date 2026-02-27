@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Campaign</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-10">
+
+<div class="bg-white p-6 rounded shadow w-1/2 mx-auto">
+  <h1 class="text-2xl font-bold mb-4">Edit Campaign</h1>
+  <form action="/campaigns/<%= campaign._id %>/edit" method="POST" enctype="multipart/form-data" class="space-y-4">
+    <div>
+      <label class="block text-sm font-semibold text-gray-700">Title</label>
+      <input name="title" value="<%= campaign.title %>" required class="mt-1 w-full border rounded px-3 py-2">
+    </div>
+    <div>
+      <label class="block text-sm font-semibold text-gray-700">Goal Amount</label>
+      <input type="number" name="goalAmount" value="<%= campaign.goalAmount %>" required class="mt-1 w-full border rounded px-3 py-2">
+    </div>
+    <div>
+      <label class="block text-sm font-semibold text-gray-700">Deadline</label>
+      <input type="date" name="deadline" value="<%= campaign.deadline.toISOString().substr(0,10) %>" required class="mt-1 w-full border rounded px-3 py-2">
+    </div>
+    <div>
+      <label class="block text-sm font-semibold text-gray-700">Category</label>
+      <input name="category" value="<%= campaign.category %>" class="mt-1 w-full border rounded px-3 py-2">
+    </div>
+    <div>
+      <label class="block text-sm font-semibold text-gray-700">Description</label>
+      <textarea name="description" required class="mt-1 w-full border rounded px-3 py-2"><%= campaign.description %></textarea>
+    </div>
+    <div>
+      <label class="block text-sm font-semibold text-gray-700">Campaign Image</label>
+      <% if (campaign.image) { %>
+        <img src="<%= campaign.image %>" class="w-32 h-32 object-cover mb-2" alt="current image">
+      <% } %>
+      <input type="file" name="image" accept="image/*" class="mt-1 w-full">
+    </div>
+    <div class="text-right">
+      <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded">Update</button>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>
