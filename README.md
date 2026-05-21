@@ -1,1 +1,3 @@
- NGo donation platform for secure transcations and avalabile campigns
+ NGo donation platform
+ for secure transcations 
+ and avalabile campigns
